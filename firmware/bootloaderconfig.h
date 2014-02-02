@@ -120,12 +120,6 @@ these macros are defined, the boot loader uses them.
  
 /* ----------------------- Optional MCU Description ------------------------ */
 
-/* tiny85 Architecture Specifics */
-#ifndef __AVR_ATtiny85__
-#  error "uBoot is only designed for attiny85"
-#endif
-#define TINY85MODE
-
 /* ------------- Set up interrupt configuration (CPU specific) -------------- */
 
 // setup interrupt for Pin Change for D+
@@ -259,9 +253,9 @@ these macros are defined, the boot loader uses them.
  *  comes with its own OSCCAL calibration or an external clock source is used. 
  */
  
-#define OSCCAL_RESTORE 1
+#define OSCCAL_RESTORE 0
 #define OSCCAL_16_5MHz 0
-#define OSCCAL_HAVE_XTAL 0
+#define OSCCAL_HAVE_XTAL 1
   
 /*  
  *  Defines handling of an indicator LED while the bootloader is active.  

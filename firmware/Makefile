@@ -14,8 +14,8 @@
 #     make lock    			# to protect the boot loader from overwriting
 #     make disablereset		# for ATtiny85 target - to use external reset line for IO (CAUTION: this is not easy to enable again, see README) 
 
-F_CPU = 16500000
-DEVICE = attiny85
+F_CPU = 16000000
+DEVICE = attiny167
 FUSEOPT = $(FUSEOPT_t85)
 LOCKOPT = -U lock:w:0x2f:m
 
@@ -29,10 +29,7 @@ BOOTLOADER_ADDRESS = 17C0
 PROGRAMMER = -c USBasp
 # PROGRAMMER contains AVRDUDE options to address your programmer
 
-FUSEOPT_8 = -U hfuse:w:0xc0:m -U lfuse:w:0x9f:m
-FUSEOPT_88 = -U hfuse:w:0xd6:m -U lfuse:w:0xdf:m -U efuse:w:0x00:m
-FUSEOPT_168 = -U hfuse:w:0xd6:m -U lfuse:w:0xdf:m -U efuse:w:0x00:m
-FUSEOPT_328 = -U lfuse:w:0xf7:m -U hfuse:w:0xda:m -U efuse:w:0x03:m
+FUSEOPT_t167 = 
 FUSEOPT_t85 = -U lfuse:w:0xe1:m -U hfuse:w:0xdd:m -U efuse:w:0xfe:m
 FUSEOPT_t85_DISABLERESET = -U lfuse:w:0xe1:m -U efuse:w:0xfe:m -U hfuse:w:0x5d:m
 # You may have to change the order of these -U commands.
