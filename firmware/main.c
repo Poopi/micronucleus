@@ -144,6 +144,12 @@ static void writeWordToPageBuffer(uint16_t data) {
   if (currentAddress.w == RESET_VECTOR_OFFSET * 2) {
     data = 0xC000 + (BOOTLOADER_ADDRESS/2) - 1;
   }
+/*
+        else if ( currentAddress == BOOTLOADER_ADDRESS + APP_RESET_OFFSET ) {
+                data = 0x940c;
+        }
+        else if ( currentAddress == BOOTLOADER_ADDRESS + APP_RESET_OFFSET + 2 ) {
+                data = vectorTemp[0];*/
 
 #if (!OSCCAL_RESTORE) && OSCCAL_16_5MHz   
    if (currentAddress.w == BOOTLOADER_ADDRESS - TINYVECTOR_OSCCAL_OFFSET) {
