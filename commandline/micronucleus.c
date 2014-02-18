@@ -70,18 +70,22 @@ int main(int argc, char **argv) {
   int run = 0;
   int file_type = FILE_TYPE_INTEL_HEX;
   int arg_pointer = 1;
-  char* usage = "usage: micronucleus [--run] [--dump-progress] [--fast-mode] [--type intel-hex|raw] [--no-ansi] [--timeout integer] [--erase-only] filename";
+  #if defined(WIN)
+  char* usage = "usage: micronucleus [--help] [--run] [--dump-progress] [--fast-mode] [--type intel-hex|raw] [--no-ansi] [--timeout integer] [--erase-only] filename";
+  #else
+  char* usage = "usage: micronucleus [--help] [--run] [--dump-progress] [--fast-mode] [--type intel-hex|raw] [--timeout integer] [--erase-only] filename";
+  #endif 
   progress_step = 0;
   progress_total_steps = 5; // steps: waiting, connecting, parsing, erasing, writing, (running)?
   dump_progress = 0;
   erase_only = 0;
   fast_mode=0;
   timeout = 0; // no timeout by default
-  //#if defined(WIN)
-  //  use_ansi = 0;
-  //#else
+  #if defined(WIN)
+    use_ansi = 0;
+  #else
     use_ansi = 1;
-  //#endif
+  #endif
 
   while (arg_pointer < argc) {
     if (strcmp(argv[arg_pointer], "--run") == 0) {
@@ -110,9 +114,9 @@ int main(int argc, char **argv) {
       puts("                           you encounter USB errors. ");
       puts("                    --run: Ask bootloader to run the program when finished");
       puts("                           uploading provided program");
-      //#ifndef WIN
+      #ifndef WIN
       puts("                --no-ansi: Don't use ANSI in terminal output");
-      //#endif
+      #endif
       puts("      --timeout [integer]: Timeout after waiting specified number of seconds");
       puts("                 filename: Path to intel hex or raw data file to upload,");
       puts("                           or \"-\" to read from stdin");
