@@ -186,7 +186,7 @@ int micronucleus_writeFlash(micronucleus* deviceHandle, unsigned int program_siz
           page_buffer [user_reset_addr - address + 3] = userReset >> 8 & 0xff;        
         } else {
           // rjmp
-          unsigned data = (userReset - user_reset_addr/2 - 1) & 0x0fff;        
+          unsigned data =  0xc000 | ((userReset - user_reset_addr/2 - 1) & 0x0fff);        
           page_buffer [user_reset_addr - address + 0] = data >> 0 & 0xff;
           page_buffer [user_reset_addr - address + 1] = data >> 8 & 0xff;
         }
